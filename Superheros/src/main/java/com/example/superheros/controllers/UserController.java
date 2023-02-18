@@ -4,6 +4,7 @@ import com.example.superheros.dtos.LoginDto;
 import com.example.superheros.dtos.TokenDto;
 import com.example.superheros.services.UserService;
 import com.example.superheros.utils.JwtUtil;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,16 +36,16 @@ public class UserController {
         this.jwtTokenUtil = jwtTokenUtil;
         this.userService = userService;
     }
-    
+
 
     @PutMapping("/user/signup")
-    public ResponseEntity<?> signup(@RequestBody LoginDto userSignup) {
+    public ResponseEntity<?> signup(@Valid @RequestBody LoginDto userSignup) {
         userService.createNewUser(userSignup.getUsername(), userSignup.getPassword());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestBody LoginDto userLogin) throws Exception {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDto userLogin) throws Exception {
 
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userLogin.getUsername(), userLogin.getPassword()));
