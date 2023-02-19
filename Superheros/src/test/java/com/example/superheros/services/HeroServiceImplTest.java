@@ -30,7 +30,7 @@ class HeroServiceImplTest {
         Mockito.when(mockSuperheroRepository.existsByName("Superman")).thenReturn(true);
 
         HeroService heroService = new HeroServiceImpl(mockSuperheroRepository);
-        
+
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             heroService.createHero("Superman");
         });
