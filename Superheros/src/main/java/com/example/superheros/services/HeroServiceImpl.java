@@ -33,9 +33,9 @@ public class HeroServiceImpl implements HeroService {
         Optional<Superhero> hero = superheroRepository.findById(id);
         if (hero.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Superhero doesn't exists!");
-        }else if (superheroRepository.existsByName(name)){
+        } else if (superheroRepository.existsByName(name)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Superhero already exists with this name!");
-        }else {
+        } else {
             Superhero result = hero.get();
             result.setName(name);
             return superheroRepository.save(result);
