@@ -1,0 +1,44 @@
+﻿Superhero documentation
+
+Environment variables:
+
+- SECRET_KEY:
+o The application starts with the environment variable SECRET_KEY for hashing the JwtToken.
+
+Endpoints:
+
+	For users:
+
+	Put:  "/user/signup" 
+		To create new users with a json containing username and password string values. Returns created.
+
+      Also a predefined test / test user exists.
+      
+      
+	Post: “/user/login”
+		To sign in with the same username / password json. Returns ok and JwtToken.
+
+	For Superhero manipulation:
+
+	Put: "/hero/new"
+		Takes name parameter, and returns created with the Superhero object.
+
+	Post: "/hero/modify/{id}"
+		Takes id as a path variable, and returns ok with the modified Superhero object.
+
+	Delete: "/hero/delete/{id}"
+		Takes id as a path variable, and returns ok.
+
+	Get: "/hero/list/{id}"
+		Takes id as a path variable, and returns ok with the Superhero object.
+
+	Get: "/hero/list/all"
+		Returns ok with a list of Superhero objects.
+
+	Get: "/hero/list/all/name"
+Takes name parameter, and returns a list of Superhero objects that contains the string from the name parameter in their name.
+      
+      
+Docker
+
+There is a Dockerfile included, and the built image can be started with the environment variable and exposing the proper port.
